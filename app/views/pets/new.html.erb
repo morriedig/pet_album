@@ -1,0 +1,10 @@
+<p>this is new page</p>
+
+<%= form_for @pet, :url => pets_path do |pet| %>
+  <%= pet.text_field :name %>
+  <%= pet.text_field :species %>
+  <%= pet.text_field :age %>
+  <%= pet.text_field :photo %>
+  <%= pet.text_area :description %>
+  <%= pet.submit "Create" %>
+<% end %>
