@@ -2,7 +2,8 @@
 
 <% @pets.each do |pet| %>
   <p>
-    <%= pet.name %>
+    <%= link_to "#{pet.name}", pet_path(pet) %>
+    <%= image_tag pet.photo.thumb.url %>
     <%= pet.description %>
   </p>
 <% end %>

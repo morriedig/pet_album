@@ -1,0 +1,12 @@
+<p>this is pet's show</p>
+
+
+<p>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <%= @pet.tracks.count %>
+</p>
+
+<%= link_to "track", pet_tracks_path(@pet), method: :post %>

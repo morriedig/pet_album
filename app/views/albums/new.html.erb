@@ -1,0 +1,10 @@
+<p>this is album's new</p>
+
+<%= form_for @album, :url => albums_path do |album| %>
+  <%= album.collection_select(:pet_id, current_user.pets.all, :id, :name) %>
+  <%= album.text_field :title %>
+  <%= album.text_area :description %>
+  <%= album.file_field :photos , multiple: true %>
+  <%= album.submit "Create" %>
+
+<% end %>

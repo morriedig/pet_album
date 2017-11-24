@@ -1,0 +1,23 @@
+<p>this is album's show</p>
+<p>
+<%= @album.title %>
+<%= @album.description %>
+</p>
+
+<% @album.photos.each do |photo| %>
+  <%= image_tag photo.thumb.url %>
+<% end %>
+
+<%= @album.likes.count %>
+<%= link_to "LIKE", album_likes_path(@album), method: :post %>
+
+<% @album.comments.each do |comment| %>
+  <p>
+    <%= comment.commenter %>
+  </p>
+<%end %>
+
+<%= form_for [@album, Comment.new] do |comment| %>
+  <%= comment.text_field :commenter %>
+  <%= comment.submit "submit" %>
+<% end %>
