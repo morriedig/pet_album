@@ -7,4 +7,8 @@ class Album < ApplicationRecord
   has_many :comments
   has_many :likes
 
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+  end 
+
 end

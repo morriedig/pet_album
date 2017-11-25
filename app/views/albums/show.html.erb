@@ -13,6 +13,7 @@
 
 <% @album.comments.each do |comment| %>
   <p>
+    <%= comment.user.name %> :
     <%= comment.commenter %>
   </p>
 <%end %>

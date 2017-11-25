@@ -2,6 +2,17 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
+    if params[:search]
+      @albums = Album.search(params[:search])
+    end
+  end
+
+  def popular
+    @albums = Album.all.order(likes_count: :desc)
+  end
+
+  def subscript
+    @pets = current_user.pets
   end
 
   def new

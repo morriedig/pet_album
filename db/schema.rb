@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124173413) do
+ActiveRecord::Schema.define(version: 20171125185103) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171124173413) do
     t.integer "pet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "likes_count", default: 0
     t.index ["pet_id"], name: "index_albums_on_pet_id"
     t.index ["user_id"], name: "index_albums_on_user_id"
   end

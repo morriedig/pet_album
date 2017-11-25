@@ -9,8 +9,14 @@
   <%= submit_tag "Search" %>
   <% end %>
 
-<% @albums.each do |album| %>
-  <%= link_to "#{album.title}", album_path(album) %>
-  <%= image_tag album.photos[0].thumb.url %>
+<% @pets.each do |pet| %>
+  <%= pet.name %>
+<% end %>
+
+<% @pets.each do |pet| %>
+  <% pet.albums.each do |album| %>
+    <%= link_to "#{album.title}", album_path(album) %>
+    <%= image_tag album.photos[0].thumb.url %>
+  <% end %>
 
 <% end %>

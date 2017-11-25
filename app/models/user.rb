@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_many :pets
   has_many :comments
-  has_many :albums
-  has_many :like
-  has_many :track
+  has_many :albums, through: :tracks
+  has_many :likes
+  has_many :tracks
 
 end

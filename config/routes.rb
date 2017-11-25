@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     resources :likes , only: [:create, :destroy]
   end
 
-  root "pets#index"
+  get "newest", to: "albums#newest"
+  get "popular", to: "albums#popular"
+  get "subscript", to: "albums#subscript"
+
+  root "albums#index"
 
 end
