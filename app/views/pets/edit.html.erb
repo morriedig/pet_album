@@ -1,0 +1,60 @@
+<div class="pet_edit">
+  <div class="pet">
+    <%= form_for @pet do |pet| %>
+      <div>
+        <div>
+          <%= image_tag pet.photo.thumb.url %>
+        </div>
+        <%= pet.label "Chose Image", :photo %>
+        <%= pet.file_field :photo %>
+      </div>
+      
+      <div>
+        <%= pet.label "Name", :name %>
+        <%= pet.text_field :name %>
+      </div>
+
+      <div>
+        <%= pet.label "Age", :age %>
+        <%= pet.text_field :age %>
+      </div>
+
+      <div>
+        <%= pet.label "Species", :species %>
+        <%= pet.text_field :species %>
+      </div>
+
+      <div>
+        <%= pet.label "Description", :description %>
+        <%= pet.text_area :description %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="album">
+    <% @pet.albums.each do |album| %>
+      <div>
+        <div class="img">
+          <%= image_tag album.photo[0].thumb.url %>
+        </div>
+
+        <div class="content">
+          <h6>
+            <%= album.create_at %>
+            <div>
+              <%= link_to "Edit", edit_album_path(album) %>
+              <%= link_to "Delete", album_path(album), method: :delete %>
+            </div>
+          </h6>
+
+          <h3>
+            <%= album.title %>
+          </h3>
+          <p>
+            <%= album.description %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

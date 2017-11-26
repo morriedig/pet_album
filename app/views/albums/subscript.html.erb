@@ -1,22 +1,55 @@
-<p>this is album's index</p>
+<div class="index">
 
-  <%= link_to "Newest", albums_path %>
-  <%= link_to "Popular", popular_path %>
-  <%= link_to "Subscript", subscript_path %>
+  <div class="index_block">
+    
+  </div>
 
-  <%= form_tag(albums_path, :method => "get", id: "search-form") do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-  <%= submit_tag "Search" %>
-  <% end %>
+  <div class="index_mid">
+    <div class="mid_left">
+      <%= link_to "Newest", albums_path %>
+      <%= link_to "Popular", popular_path %>
+      <%= link_to "Subscript", subscript_path %>
+    </div>
 
-<% @pets.each do |pet| %>
-  <%= pet.name %>
-<% end %>
+    <div class="mid_center">
+      <%= form_tag(albums_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+      <%= submit_tag "Search" %>
+      <% end %>
+    </div>
 
-<% @pets.each do |pet| %>
-  <% pet.albums.each do |album| %>
-    <%= link_to "#{album.title}", album_path(album) %>
-    <%= image_tag album.photos[0].thumb.url %>
-  <% end %>
+    <div class="mid_right">
+      <%= link_to "New Album", new_album_path %>
+    </div>
+  </div>
 
-<% end %>
+  <div class="index_bot">
+    <%= @pets.each do |pet| %>
+      <% pet.albums.each do |album| %>
+        <div>
+            <div class="img">
+              <%= image_tag album.photos[0].thumb.url %>
+            </div>
+            <div class="content">
+              <%= link_to "#{album.title}", album_path(album) %>
+              <div class="content_mid">  
+                <h4>
+                  <%= album.user.name %>
+                </h4>
+                <% if current_user.id == album.user.id %>
+                  <div>
+                    <%= link_to "Edit", edit_album_path(album) %>
+                    <%= link_to "Delete", album_path(album), method: :delete %>
+                  </div>
+                <% end %>
+              </div>
+              <p>
+                <%= album.description %>
+              </p>
+            </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>

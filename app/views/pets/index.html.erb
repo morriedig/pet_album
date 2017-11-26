@@ -1,11 +1,16 @@
-<p>this is index</p>
+<div class="pet_index">
+  <% @pets.each do |pet| %>
+    <div>
+      <div class="img">
+        <%= image_tag pet.photo.thumb.url %>
+      </div>
 
-<% @pets.each do |pet| %>
-  <p>
-    <%= link_to "#{pet.name}", pet_path(pet) %>
-    <%= image_tag pet.photo.thumb.url %>
-    <%= pet.description %>
-  </p>
-<% end %>
-
-<%= link_to "New", new_pet_path %>
+      <div class="content">
+        <%= link_to "#{pet.name}", pet_path(pet) %>
+        <p>
+          <%= pet.description %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

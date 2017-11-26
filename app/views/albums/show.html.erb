@@ -1,24 +1,86 @@
-<p>this is album's show</p>
-<p>
-<%= @album.title %>
-<%= @album.description %>
-</p>
+  <div class="album_show">
 
-<% @album.photos.each do |photo| %>
-  <%= image_tag photo.thumb.url %>
-<% end %>
+  <div class="show_top">
+    <div class="show_top_left">
+      <div class="show_img">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <div>
+        <%= image_tag photo.thumb_big.url %>
+        </div>
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </div>
 
-<%= @album.likes.count %>
-<%= link_to "LIKE", album_likes_path(@album), method: :post %>
+      <div class="show_all_image">
+        <% @album.photos.each do |photo| %>
+          <div>
+            <%= image_tag photo.url %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-<% @album.comments.each do |comment| %>
-  <p>
-    <%= comment.user.name %> :
-    <%= comment.commenter %>
-  </p>
-<%end %>
+    <div class="show_top_right">
+      <div class="top">
+        <%= link_to "#{@album.pet.name}", pet_path(@album.pet) %>
+        <h3>
+          <%= @album.title %>
+          <%= @album.likes.count %>
+          <%= link_to '<i class="fa fa-thumbs-up" aria-hidden="true"></i> #{@album.likes.count}', album_likes_path(@album), method: :post %>
+        </h3>
 
-<%= form_for [@album, Comment.new] do |comment| %>
-  <%= comment.text_field :commenter %>
-  <%= comment.submit "submit" %>
-<% end %>
+        <div>
+          <% if couurent_user.id == @album.user_id %>
+            <%= link_to "Edit", edit_album_path(@album) %>
+            <%= link_to "Delete", album_path(@album), method: :delete %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mid">
+        <p>
+          <%= @album.description %>
+        </p>
+      </div>
+
+      <div class="bot">
+        <h3>
+          Comment
+        </h3>
+
+        <div class="comments">
+          <% @album.comments.each do |comment| %>
+            <h5>
+              <%= comment.user.name %> : 
+              <%= comment.commenter %>
+            </h5>
+          <% end %>
+        </div>
+
+        <div class="new_comment">
+          <%= form_for [@album, Comment.new] do |comment| %>
+            <%= comment.text_field :commenter %>
+            <%= comment.submit "submit" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="show_bot">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+
+    <div>
+      <% @album.pet.albums.each do |album| %>
+          <div class="img">
+            <%= image_tag album.photo[0].thumb.url %>
+          </div>
+
+          <div class="title">
+            <%= link_to "#{album.title}", album_paht(album) %>
+          </div>
+      <% end %>
+    </div>
+
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+  </div>
+</div>
