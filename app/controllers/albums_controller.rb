@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @albums = current_user.albums
+    # @albums = current_user.albums
   end
 
   def destroy

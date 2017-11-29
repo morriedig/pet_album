@@ -9,18 +9,19 @@
       <%= link_to "Newest", albums_path %>
       <%= link_to "Popular", popular_path %>
       <%= link_to "Subscript", subscript_path %>
-    </div>
 
-    <div class="mid_center">
       <%= form_tag(albums_path, :method => "get", id: "search-form") do %>
       <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-      <%= submit_tag "Search" %>
+      <%= submit_tag "Search", class: "submit" %>
       <% end %>
+
     </div>
 
-    <div class="mid_right">
-      <%= link_to "New Album", new_album_path %>
-    </div>
+    <% if current_user && (current_user.pets.count != 0 ) %>
+      <div class="mid_right">
+        <%= link_to "New Album", new_album_path %>
+      </div>
+    <% end %>
   </div>
 
   
@@ -30,19 +31,19 @@
           <div class="img">
             <%= image_tag album.photos[0].thumb.url %>
           </div>
+
           <div class="content">
             <%= link_to "#{album.title}", album_path(album) %>
-            <div class="content_mid">  
-              <h4>
-                <%= album.user.name %>
-              </h4>
-              <% if current_user.id == album.user.id %>
+            <div class="content_mid">
+                <%= album.created_at %>
                 <div>
-                  <%= link_to "Edit", edit_album_path(album) %>
-                  <%= link_to "Delete", album_path(album), method: :delete %>
+                  <% if  current_user && (current_user.id == album.user.id) %>            
+                    <%= link_to "Edit", edit_album_path(album) %>
+                    <%= link_to "Delete", album_path(album), method: :delete %>
+                  <% end %>
                 </div>
-              <% end %>
             </div>
+            
             <p>
               <%= album.description %>
             </p>

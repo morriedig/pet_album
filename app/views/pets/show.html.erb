@@ -1,26 +1,26 @@
 <div class="pet_show">
   <div class="show_top">
-    <div class="right">
-      <%= image_tag @pet.photo.thumd.url %>
+    <div class="left">
+      <%= image_tag @pet.photo.thumb_inform.url %>
     </div>
 
-    <div class="left">
+    <div class="right">
       <h2>
         <%= @pet.name %>
         <%= link_to "Follow #{@pet.tracks.count}", pet_tracks_path(@pet), method: :post %>
         <% if @pet.user_id == current_user.id %>
-          <%= link_to "New", new_album_path %>
+          <%= link_to "New Photos", new_album_path %>
           <%= link_to "Edit", edit_pet_path(@pet) %>
           <%= link_to "Delete", pet_path(@pet), method: :delete %>
         <% end %>
       </h2>
       
       <h4>
-        <%= @pet.specise %>
+        Species : <%= @pet.species %>
       </h4>
       
       <h4>
-        <%= @pet.age %>
+        Age : <%= @pet.age %>
       </h4>
 
       <p>
@@ -33,16 +33,19 @@
     <% @pet.albums.each do |album| %>
       <div>
         <div class="img">
-          <%= image_tag album.photo[0].thumb.url %>
+          <%= image_tag album.photos[0].thumb.url %>
         </div>
 
         <div class="content">
           <h3>
             <%= link_to "#{album.title}", album_path(album) %>
           </h3>
+
           <h5>
-            <%= link_to '<i class="fa fa-thumbs-up" aria-hidden="true"></i> #{album.likes.count}', album_likes_path(album), method: :post %>
+            <%= album.created_at %>
+            <%= link_to "#{album.likes.count}Likes", album_likes_path(album), method: :post %>
           </h5>
+
           <p>
             <%= album.description %>
           </p>
@@ -51,5 +54,3 @@
     <% end %>
   </div>
 </div>
-
-<%= link_to "track", pet_tracks_path(@pet), method: :post %>

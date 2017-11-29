@@ -1,4 +1,4 @@
-<div class="pet_new">
+<div class="pet_new form">
   <div>
     <%= form_for @pet, :url => pets_path do |pet| %>
       <div>
@@ -27,7 +27,7 @@
       </div>
 
       <div>
-        <%= pet.submit "Create" %>
+        <%= pet.submit "Create", class: "submit" %>
       </div>
     <% end %>
   </div>

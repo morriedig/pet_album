@@ -1,8 +1,8 @@
-<div class="album_new">
+<div class="album_new form">
   <div>
     <%= form_for @album, :url => albums_path do |album| %>
       <div>
-        <%= album.label "Name", :pet_id %>
+        <%= album.label "Pet Name"%>
         <%= album.collection_select(:pet_id, current_user.pets.all, :id, :name) %>
       </div>
 
@@ -22,7 +22,7 @@
       </div>
 
       <div>
-        <%= album.submit "Create" %>
+        <%= album.submit "Create", class: "submit" %>
       </div>
     <% end %>
   </div>
