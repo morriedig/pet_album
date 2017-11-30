@@ -7,6 +7,17 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def edit
+    @album = Album.find(params[:id])
+  end
+
+  def update
+    @album = Album.find(params[:id])
+    @album.update(album_params)
+
+    redirect_to album_path(@album)
+  end
+
   def popular
     @albums = Album.all.order(likes_count: :desc)
   end

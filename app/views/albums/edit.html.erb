@@ -1,0 +1,29 @@
+<div class="album_new form">
+  <div>
+    <%= form_for @album do |album| %>
+      <div>
+        <%= album.label "Pet Name"%>
+        <%= album.collection_select(:pet_id, current_user.pets.all, :id, :name) %>
+      </div>
+
+      <div>
+        <%= album.label "Title", :title %>
+        <%= album.text_field :title %>
+      </div>
+
+      <div>
+        <%= album.label "Description", :description %>
+        <%= album.text_area :description %>
+      </div>
+
+      <div>
+        <%= album.label "Images", :photos %>
+        <%= album.file_field :photos , multiple: true %>
+      </div>
+
+      <div>
+        <%= album.submit "Create", class: "submit" %>
+      </div>
+    <% end %>
+  </div>
+</div>

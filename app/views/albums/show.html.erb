@@ -3,33 +3,20 @@
   <div class="show_top">
     <div class="show_top_left">
       <div class="show_img">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        <i class="fa fa-chevron-left show_image_left" aria-hidden="true"></i>
         <div>
           <%= image_tag @album.photos[0].thumb_big.url %>
         </div>
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <i class="fa fa-chevron-right show_image_right" aria-hidden="true"></i>
       </div>
-    
+
       <div class="show_all_image">
-        <i class="fa fa-chevron-left all_image_left" aria-hidden="true"></i>
           <% @album.photos.each do |photo| %>
             <div>
               <%= image_tag photo.thumb_small.url %>
             </div>
           <% end %>
-        <i class="fa fa-chevron-right all_image_right" aria-hidden="true"></i>
       </div>
-
-      <script type="text/javascript">
-        const all_image_left = document.querySelector(".all_image_left")
-        const all_image_right = document.querySelector(".all_image_right")
-
-        all_image_left.addEventListener('click', ()=>{
-          const show_all_image = document.querySelectorAll('.show_all_image')
-          show_all_image.style.each.transform = "translateX(-20px)";
-          console.log(1)
-        })
-      </script>
 
     </div>
 
