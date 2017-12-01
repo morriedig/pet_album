@@ -117,20 +117,25 @@ a{
     margin-bottom:30px;
 
     > div{
+      box-sizing:border-box;
+      margin-top:30px;
       border:1px solid #cdcdcd;
       width:360px;
       height:470px;
       border-radius:5px;
+      box-shadow:0 0 3px 0 gray;
 
       .img{
         height:270px;
         text-align:center;
-        border:1px solid black;
+        border-bottom:1px solid #cdcdcd;
       }
 
       .content{
         text-align:center;
+        height:200px;
         overflow:hidden;
+        border-top:1px solid #f1f1f1;
 
         >a{
           font-size:1.4em;
@@ -309,7 +314,8 @@ a{
     display:flex;
     width:1150px;
     margin:30px auto;
-    height:200px;
+    height:210px;
+    overflow:scroll;
 
     i{
       width:50px;
@@ -323,11 +329,13 @@ a{
       width:1100px;
       display:flex;
 
+
       > div{
         border:1px solid black;
         width:250px;
         margin-right:33px;
         border-radius:5px;
+        height:180px;
 
         .img{
           width:100%;
