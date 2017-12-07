@@ -53,16 +53,13 @@
 
         <div class="comments">
           <% @album.comments.each do |comment| %>
-            <h5>
-              <%= comment.user.name %> : 
-              <%= comment.commenter %>
-            </h5>
+            <%= render :partial => "comments/comment_form", :locals =>{comment: comment } %>
           <% end %>
         </div>
 
         <% if current_user %>
           <div class="new_comment">
-            <%= form_for [@album, Comment.new] do |comment| %>
+            <%= form_for [@album, Comment.new], remote: true do |comment| %>
               <%= comment.text_field :commenter, placeholder: "comment", class: "create_comment" %>
             <% end %>
           </div>

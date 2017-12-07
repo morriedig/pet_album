@@ -4,7 +4,7 @@ class AlbumsController < ApplicationController
     @albums = Album.all
     if params[:search]
       @albums = Album.search(params[:search])
-    end
+    end 
   end
 
   def edit

@@ -14,7 +14,9 @@
     <div class="fix_bar">
         <div class="fix_left">
           <%= link_to "PetHold", albums_path %>
-          <%= link_to "New Pet", new_pet_path %>
+          <% if current_user %>
+            <%= link_to "New Pet", new_pet_path %>
+          <% end %>
         </div>
         <div class="fix_right">
           <% if user_signed_in? %>
