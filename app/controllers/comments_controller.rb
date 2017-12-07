@@ -12,6 +12,10 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.destroy
 
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js # destroy.js.erb
+    end
   end
 
   private

@@ -9,6 +9,14 @@ class TracksController < ApplicationController
     redirect_to pet_path(@pet)
   end
 
+  def destroy
+    track = current_user.tracks.find(params[:id])
+    pet = track.pet_id
+    track.destroy
+
+    redirect_to pet_path(pet)
+  end
+
   private
 
   def track_params

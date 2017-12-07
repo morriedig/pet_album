@@ -11,4 +11,13 @@ class Album < ApplicationRecord
     where("title LIKE ?", "%#{search}%")
   end 
 
+  def find_like_user(user)
+    if user
+      self.likes.where(:user_id => user.id).first
+    else
+      nil
+    end
+  end
+
+
 end

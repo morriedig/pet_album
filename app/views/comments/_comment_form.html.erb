@@ -1,4 +1,7 @@
-<h5>
+<h5 id="comment-<%= comment.id %>">
   <%= comment.user.name %> : 
-  <%= comment.commenter %>
+  <%= comment.commenter %> <br>
+  <% if current_user && comment.user == current_user %>
+    <%= link_to "(Delete)", album_comment_path(@album, comment), :method => :delete, :remote => true %>
+  <% end %>
 </h5>

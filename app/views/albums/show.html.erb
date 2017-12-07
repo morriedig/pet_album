@@ -25,7 +25,12 @@
         <%= link_to "#{@album.pet.name}", pet_path(@album.pet) %>
         <h3>
           <%= @album.title %>
-          <%= link_to "#{@album.likes.count} Likes", album_likes_path(@album), method: :post %>
+          <% like = @album.find_like_user(current_user) %>
+          <% if like %>
+            <%= link_to "#{@album.likes.count} Likes", album_like_path(@album, like), method: :delete %>
+          <% else %>
+            <%= link_to "#{@album.likes.count} Likes", album_likes_path(@album), method: :post %>
+          <% end %>
         </h3>
 
         <div>

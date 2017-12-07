@@ -7,7 +7,12 @@
     <div class="right">
       <h2>
         <%= @pet.name %>
-        <%= link_to "Follow #{@pet.tracks.count}", pet_tracks_path(@pet), method: :post %>
+        <% track = @pet.find_track_user(current_user)%>
+        <% if track %>
+          <%= link_to "Unfollow", pet_track_path(@pet, track), method: :delete %>
+        <% else %>
+          <%= link_to "Follow", pet_tracks_path(@pet), method: :post %>
+        <% end %>
         <% if @pet.user_id == current_user.id %>
           <%= link_to "New Photos", new_album_path %>
           <%= link_to "Edit", edit_pet_path(@pet) %>

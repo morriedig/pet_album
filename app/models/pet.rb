@@ -7,4 +7,12 @@ class Pet < ApplicationRecord
   has_many :albums
 
 
+  def find_track_user(user)
+    if user
+      self.tracks.where(:user_id => user.id).first
+    else
+      nil
+    end
+  end
+
 end
